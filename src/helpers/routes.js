@@ -116,7 +116,9 @@ exports.makeRoutes = (baseRoutes, {
         // No need to add prefix if child's path is relative
         !isChildWithRelativePath &&
         // Skip default locale if strategy is PREFIX_EXCEPT_DEFAULT
-        !(isDefaultLocale && strategy === STRATEGIES.PREFIX_EXCEPT_DEFAULT)
+        !(isDefaultLocale && strategy === STRATEGIES.PREFIX_EXCEPT_DEFAULT) &&
+        // No prefix if app uses its own custom routes
+        !(strategy === STRATEGIES.NO_PREFIX_MANUAL_ROUTES)
       )
 
       if (shouldAddPrefix) {
